@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.saintgobain.mapper.ReserveMapper">
+	<!-- 查询司机是否有正在执行任务 -->
+	<select id="seltask"
+		parameterType="com.example.saintgobain.entity.DB_task_List"
+		resultType="java.util.Map">
+		select * from task_list where driverid = #{driverid} and status = 0
+	</select>
+	<!-- 保存任务信息 -->
+	<insert id="inserttask"
+		parameterType="com.example.saintgobain.entity.DB_task_List" useGeneratedKeys="true" keyProperty="id" >
+		insert into task_list (
+		driverid
+		)
+		values(
+		#{driverid}
+		)
+	</insert>
+	<!-- 保存预约信息 -->
+	<insert id="inserttask_reserve"
+		parameterType="com.example.saintgobain.entity.DB_task_Reserve" useGeneratedKeys="true" keyProperty="id" >
+		insert into task_reserve (
+		taskid,
+		driverid,
+		reservation_date,
+		period_time
+		)
+		values(
+		#{taskid},
+		#{driverid},
+		#{reservation_date},
+		#{period_time}
+		)
+	</insert>
+</mapper>

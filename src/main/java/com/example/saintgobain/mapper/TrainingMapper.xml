@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.saintgobain.mapper.TrainingMapper">
+	
+	<!-- 查询司机是否已经签到 -->
+	<select id="selectcomein"
+		parameterType="com.example.saintgobain.entity.DB_task_Training"
+		resultType="java.util.Map">
+		select * from task_training where driverid = #{driverid} and taskid = #{taskid}
+	</select>
+	<!-- 保存进场须知信息 -->
+	<insert id="inserttraining"
+		parameterType="com.example.saintgobain.entity.DB_task_Training" useGeneratedKeys="true" keyProperty="id" >
+		insert into task_training (
+		taskid,
+		driverid,
+		whether_read
+		)
+		values(
+		#{taskid},
+		#{driverid},
+		#{whether_read}
+		)
+	</insert>
+	<!-- 修改进场须知信息疫情 -->
+	<update id="updateepidemic" parameterType="com.example.saintgobain.entity.DB_task_Training">
+	update task_training 
+	set 
+	whether_new_crown = #{whether_new_crown},
+	whether_symptom = #{whether_symptom},
+	whether_touch = #{whether_touch},
+	whether_pass_area = #{whether_pass_area},
+	whether_touch_personnel = #{whether_touch_personnel},
+	write_time = now()
+	where id = #{id}
+	</update>
+	<!-- 修改进场须知信息承诺书 -->
+	<update id="updatepromise" parameterType="com.example.saintgobain.entity.DB_task_Training">
+	update task_training 
+	set 
+	driver_name = #{driver_name},
+	phone = #{phone},
+	owned_company = #{owned_company},
+	hometown_province = #{hometown_province},
+	reside_province = #{reside_province},
+	hometown_city = #{hometown_city},
+	reside_city = #{reside_city},
+	identity_umber = #{identity_umber},
+	driving_license = #{driving_license},
+	driver_license = #{driver_license}
+	where id = #{id}
+	</update>
+</mapper>

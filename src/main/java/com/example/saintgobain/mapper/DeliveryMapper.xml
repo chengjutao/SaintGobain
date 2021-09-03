@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.saintgobain.mapper.DeliveryMapper">
+	
+	<!-- 查询司机是否已经交付 -->
+	<select id="selectdelivery"
+		parameterType="com.example.saintgobain.entity.DB_task_delivery"
+		resultType="java.util.Map">
+		select * from task_delivery where driverid = #{driverid} and taskid = #{taskid}
+	</select>
+	
+	<!-- 保存交付任务信息 -->
+	<insert id="insertdelivery"
+		parameterType="com.example.saintgobain.entity.DB_task_delivery" useGeneratedKeys="true" keyProperty="id" >
+		insert into task_delivery (
+		taskid,
+		driverid,
+		type,
+		photo_name
+		)
+		values(
+		#{taskid},
+		#{driverid},
+		#{type},
+		#{photo_name}
+		)
+	</insert>
+	
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.saintgobain.mapper.ApproachMapper">
+	
+	<!-- 查询司机是否已经进场 -->
+	<select id="selectapproach"
+		parameterType="com.example.saintgobain.entity.DB_task_Approach"
+		resultType="java.util.Map">
+		select * from task_approach where driverid = #{driverid} and taskid = #{taskid}
+	</select>
+	
+	<!-- 保存进场任务信息 -->
+	<insert id="insertapproach"
+		parameterType="com.example.saintgobain.entity.DB_task_Approach" useGeneratedKeys="true" keyProperty="id" >
+		insert into task_approach (
+		taskid,
+		driverid,
+		arrive_time
+		)
+		values(
+		#{taskid},
+		#{driverid},
+		#{arrive_time}
+		)
+	</insert>
+	
+</mapper>

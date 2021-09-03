@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.saintgobain.mapper.SignInMapper">
+	
+	<!-- 查询司机是否已经签到 -->
+	<select id="selectsignin"
+		parameterType="com.example.saintgobain.entity.DB_task_Signin"
+		resultType="java.util.Map">
+		select * from task_signin where driverid = #{driverid} and taskid = #{taskid}
+	</select>
+	
+	<!-- 保存签到任务信息 -->
+	<insert id="insertsignin"
+		parameterType="com.example.saintgobain.entity.DB_task_Signin" useGeneratedKeys="true" keyProperty="id" >
+		insert into task_signin (
+		taskid,
+		driverid,
+		signin_time
+		)
+		values(
+		#{taskid},
+		#{driverid},
+		#{signin_time}
+		)
+	</insert>
+	
+</mapper>
